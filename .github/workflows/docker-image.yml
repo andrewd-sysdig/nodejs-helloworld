@@ -37,3 +37,15 @@ jobs:
           context: .
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+      
+      - name: Sysdig Secure Inline Scan
+        # You may pin to the exact commit or the version.
+        # uses: sysdiglabs/scan-action@768d7626a14897e0948ea89c8437dd46a814b163
+        uses: sysdiglabs/scan-action@v3.2.0
+        with:
+          image-tag: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+          sysdig-secure-token: ${{ secrets.SECURE_API_TOKEN }}
+          sysdig-secure-url: https://app.au1.sysdig.com
+          ignore-failed-scan: true
+          input-type: pull
+
