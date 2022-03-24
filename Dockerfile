@@ -6,7 +6,7 @@ FROM node@sha256:c5725a63cb29b78a2ccfffbc70c0e7bc938c925633dbb39a96acbec57c79299
 WORKDIR /usr/src/app
 
 # Upgrade libssl1.1 to fix SCV2022-0778
-# RUN apt update && apt upgrade libssl1.1 -y
+RUN apt update && apt upgrade libssl1.1 -y
 
 # Bundle app source
 COPY app.js .
