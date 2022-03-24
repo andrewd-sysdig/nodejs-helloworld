@@ -45,6 +45,7 @@ jobs:
           curl -LO "https://download.sysdig.com/scanning/inlinescan/inlinescan_$(curl -L -s https://download.sysdig.com/scanning/inlinescan/latest_version.txt)_linux_amd64"
           chmod +x inlinescan_$(curl -L -s https://download.sysdig.com/scanning/inlinescan/latest_version.txt)_linux_amd64
           SECURE_API_TOKEN=${{ secrets.SECURE_API_TOKEN }} ./inlinescan_$(curl -L -s https://download.sysdig.com/scanning/inlinescan/latest_version.txt)_linux_amd64 --apiurl https://app.au1.sysdig.com ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+          exit 0
       
       - name: Sysdig Secure Inline Scan
         # You may pin to the exact commit or the version.
