@@ -40,13 +40,13 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
       
-      - name: Sysdig Secure Inline Scan - Tech Preview
+      - name: Sysdig Secure Inline Scan - New
         run: |
           curl -LO "https://download.sysdig.com/scanning/bin/sysdig-cli-scanner/$(curl -L -s https://download.sysdig.com/scanning/sysdig-cli-scanner/latest_version.txt)/linux/amd64/sysdig-cli-scanner"
           chmod +x ./sysdig-cli-scanner
           SECURE_API_TOKEN=${{ secrets.SECURE_API_TOKEN }} ./sysdig-cli-scanner --apiurl https://app.au1.sysdig.com ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }} || true
       
-      - name: Sysdig Secure Inline Scan
+      - name: Sysdig Secure Inline Scan - Legacy
         # You may pin to the exact commit or the version.
         # uses: sysdiglabs/scan-action@768d7626a14897e0948ea89c8437dd46a814b163
         uses: sysdiglabs/scan-action@v3.2.0
